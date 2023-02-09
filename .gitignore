@@ -182,7 +182,8 @@ dist
 # TODO: where does this rule come from?
 docs/_book
 
-# TODO: where does this rule come from?
-test/
+# jest test coverage
+.jest_coverage
+test/coverage
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,vue,node

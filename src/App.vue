@@ -1,11 +1,9 @@
 <template>
-  <div class="container">
+  <div>
     <RouterView />
   </div>
 </template>
 
 <style scoped>
-.container {
 
-}
 </style>
