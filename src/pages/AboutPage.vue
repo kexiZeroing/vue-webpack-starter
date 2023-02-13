@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h3>About page</h3>
-    <img :src="LogoImg" alt="">
+    <h3 class="text-3xl font-bold underline">
+      About page
+    </h3>
+    <img
+      :src="LogoImg"
+      alt="logo"
+    >
   </div>
 </template>
 

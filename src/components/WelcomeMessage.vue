@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div class="container">
     <h3>Hello {{ props.name }} from my Vue.js page</h3>
     <div class="container">
       <p class="text">
         give me some style
       </p>
-      <button @click="increaseCounter">
+      <button
+        class="text-white bg-blue-700 hover:bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5"
+        @click="increaseCounter"
+      >
         Click Me: {{ counter }}
       </button>
     </div>
