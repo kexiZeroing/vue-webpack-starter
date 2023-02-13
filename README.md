@@ -1,6 +1,6 @@
 # vue-webpack-starter
 
-Vue 2.7 template using Webpack 5
+Vue 2.7 template using Webpack 5. Inspired by https://github.com/dfcook/vue-webpack4-template
 
 TODO:
 - Complete eslint https://eslint.vuejs.org

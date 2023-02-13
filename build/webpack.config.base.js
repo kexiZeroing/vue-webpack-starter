@@ -1,5 +1,7 @@
 'use strict'
 
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
@@ -7,10 +9,15 @@ const { VueLoaderPlugin } = require('vue-loader')
 const utils = require('./utils')
 
 module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].bundle.js',
+    publicPath: '/',
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'assets': utils.resolve('assets'),
       'static': utils.resolve('static'),
       'pages': utils.resolve('src/pages'),
       'components': utils.resolve('src/components')
@@ -28,38 +35,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         }
-      }, {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: utils.assetsPath('img/[name].[hash:7].[ext]')
-          }
-        }
-      }, {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: utils.assetsPath('media/[name].[hash:7].[ext]')
-          }
-        }
-      }, {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-          }
-        }
-      }
+      },
+      // Images: Copy image files to build folder
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
+      // Fonts and SVGs: Inline files
+      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
     ]
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
